@@ -5,7 +5,6 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/widgets/vertical_divider.dart';
 
 import 'models/event.dart';
 import 'models/style/button_style.dart';
@@ -106,55 +105,60 @@ class _MyHomePageState extends State<MyHomePage> {
                 })
                 .toList()
                 .map((Event event) {
-                  return new Column(
+                  return new IntrinsicHeight(
+                      child: Row(
                     children: [
-                      IntrinsicHeight(
-                          child: Row(
-                        children: [
-                          Container(
-                              padding: EdgeInsets.fromLTRB(
-                                  paddingSmall, paddingLarge, paddingSmall, 0),
-                              width: MediaQuery.of(context).size.width * 0.25,
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Text(DateFormat('yyyy-MM-dd')
-                                        .format(event.createdAt)),
-                                    Text(DateFormat('kk:mm')
-                                        .format(event.createdAt)),
-                                  ],
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                ),
-                              )),
-                          VilniusUniversityVerticalDivider(),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(
-                                paddingSmall, paddingLarge, paddingSmall, 0),
-                            width: MediaQuery.of(context).size.width * 0.7,
+                      Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                            bottom: BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                            right: BorderSide(
+                              color: Color(0xFFD1D1D1),
+                            ),
+                          )),
+                          padding: EdgeInsets.fromLTRB(
+                              paddingSmall, paddingLarge, paddingSmall, 0),
+                          width: MediaQuery.of(context).size.width * 0.27,
+                          child: Center(
                             child: Column(
                               children: [
-                                Text(event.metadata.toString()),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(15, 30, 15, 5),
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    child: Text(translate(
-                                        'button.event.action.' + event.type)),
-                                    style: VilniusUniversityButtonStyle(),
-                                  ),
-                                )
+                                Text(DateFormat('yyyy-MM-dd')
+                                    .format(event.createdAt)),
+                                Text(DateFormat('kk:mm')
+                                    .format(event.createdAt)),
                               ],
+                              crossAxisAlignment: CrossAxisAlignment.start,
                             ),
-                          )
-                        ],
-                      )),
+                          )),
                       Container(
-                        child: Divider(
-                          color: Color(0xFFD1D1D1),
+                        decoration: BoxDecoration(
+                            border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xFFD1D1D1),
+                          ),
+                        )),
+                        padding: EdgeInsets.fromLTRB(
+                            paddingSmall, paddingLarge, paddingSmall, 0),
+                        width: MediaQuery.of(context).size.width * 0.73,
+                        child: Column(
+                          children: [
+                            Text(event.metadata.toString()),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(15, 30, 15, 5),
+                              child: TextButton(
+                                onPressed: () {},
+                                child: Text(translate(
+                                    'button.event.action.' + event.type)),
+                                style: VilniusUniversityButtonStyle(),
+                              ),
+                            )
+                          ],
                         ),
                       )
                     ],
-                  );
+                  ));
                 })
                 .toList(),
           );
