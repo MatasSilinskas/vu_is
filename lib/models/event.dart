@@ -7,6 +7,8 @@ part 'event.g.dart';
 @JsonSerializable()
 class Event {
   static const typeGradeAdded = 'grade_added';
+  static const typeRegistrationsIncoming = 'registrations_incoming';
+  static const typeRegistrationsStarted = 'registrations_started';
 
   final String type;
 
@@ -19,8 +21,8 @@ class Event {
   Event(
       {required this.type,
       required this.createdAt,
-      required Map<String, dynamic> metadata}) {
-    this.metadata = Metadata.create(this.type, metadata);
+      Map<String, dynamic>? metadata}) {
+    this.metadata = Metadata.create(this.type, metadata == null ? {} : metadata);
   }
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);

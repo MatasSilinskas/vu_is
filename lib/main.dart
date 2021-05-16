@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xFFFFFFFF),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: events.snapshots(),
+        stream: events.orderBy('createdAt', descending: true).snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text(translate(Keys.Errors_Unknown));

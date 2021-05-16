@@ -10,7 +10,7 @@ Event _$EventFromJson(Map<String, dynamic> json) {
   return Event(
     type: json['type'] as String,
     createdAt: Event._dateTimeFromTimestamp(json['createdAt'] as Timestamp),
-    metadata: json['metadata'] as Map<String, dynamic>,
+    metadata: json['metadata'] as Map<String, dynamic>?,
   );
 }
 

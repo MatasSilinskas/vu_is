@@ -1,16 +1,22 @@
 {
   "event": {
-    "grade_added": "{subject} buvo įvertintas. Pažymys: {grade}"
+    "grade_added": "{subject} buvo įvertintas. Pažymys: {grade}",
+    "registrations_incoming": "Artėja dalykų registracijos! Nepamirškite pasirinkti norimų dalykų iš anksto.",
+    "registrations_started": "Dalykų registracijos prasidėjo! Nepamirškite jų pateikti."
   },
   "subject": {
     "title": {
-      "objective_programming": "Objektinis programavimas"
+      "objective_programming": "Objektinis programavimas",
+      "discrete_mathematics": "Diskrečioji matematika",
+      "algorithm_and_data_structures": "Algoritmai ir duomenų struktūros"
     }
   },
   "button": {
     "event": {
       "action": {
-        "grade_added": "Peržiūrėkite visus įvertinimus"
+        "grade_added": "Peržiūrėti visus įvertinimus",
+        "registrations_incoming": "Peržiūrėti registracijas",
+        "registrations_started": "Peržiūrėti registracijas"
       }
     },
     "navigation": {

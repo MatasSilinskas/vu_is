@@ -1,4 +1,6 @@
 import 'package:vu_is/models/metadata/grade_added_metadata.dart';
+import 'package:vu_is/models/metadata/registrations_incoming.dart';
+import 'package:vu_is/models/metadata/registrations_started.dart';
 
 import 'event.dart';
 
@@ -9,6 +11,10 @@ class Metadata {
     switch (type) {
       case Event.typeGradeAdded:
         return GradeAddedMetadata.fromJson(json);
+      case Event.typeRegistrationsIncoming:
+        return RegistrationsIncoming();
+      case Event.typeRegistrationsStarted:
+        return RegistrationsStarted();
     }
 
     return Metadata();
