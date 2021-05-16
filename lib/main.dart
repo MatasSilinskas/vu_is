@@ -165,6 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       bottomNavigationBar: new BottomAppBar(
+        color: Color(0xFF690335),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
@@ -182,3 +183,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
