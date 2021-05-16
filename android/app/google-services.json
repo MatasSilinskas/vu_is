@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072060872451",
+    "project_id": "vu-is-f4c14",
+    "storage_bucket": "vu-is-f4c14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072060872451:android:0f15b6303ed753b8679b36",
+        "android_client_info": {
+          "package_name": "com.example.vu_is"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072060872451-82erj66dsn87vlqe3jsvrghj5jr3t5nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZOx_a0wIgvPICA7G5jYb58dv0NXiwmG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072060872451-82erj66dsn87vlqe3jsvrghj5jr3t5nh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

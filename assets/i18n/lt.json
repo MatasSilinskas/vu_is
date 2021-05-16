@@ -1,0 +1,10 @@
+{
+  "event": {
+    "grade_added": "{subject} buvo įvertintas. Pažymys: {grade}"
+  },
+  "subject": {
+    "title": {
+      "objective_programming": "Objektinis programavimas"
+    }
+  }
+}
