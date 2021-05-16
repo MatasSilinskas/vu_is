@@ -6,5 +6,24 @@
     "title": {
       "objective_programming": "Objektinis programavimas"
     }
+  },
+  "button": {
+    "event": {
+      "action": {
+        "grade_added": "Peržiūrėkite visus įvertinimus"
+      }
+    },
+    "navigation": {
+      "menu": "Meniu"
+    }
+  },
+  "window": {
+    "events": "Įvykiai"
+  },
+  "custom": {
+    "loading": "Kraunasi..."
+  },
+  "errors": {
+    "unknown": "Įvyko klaida"
   }
 }

@@ -3,8 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+import 'package:vu_is/localization/keys.dart';
+import 'package:vu_is/models/widgets/vertical_divider.dart';
 
 import 'models/event.dart';
+import 'models/style/button_style.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +24,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LocalizationDelegate localizationDelegate = LocalizedApp.of(context).delegate;
+    LocalizationDelegate localizationDelegate =
+        LocalizedApp.of(context).delegate;
 
     return LocalizationProvider(
       state: LocalizationProvider.of(context).state,
@@ -36,7 +41,7 @@ class MyApp extends StatelessWidget {
             future: _firebaseApp,
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                return Text('Error occured: ' + snapshot.error.toString());
+                return Text(snapshot.error.toString());
               } else if (snapshot.hasData) {
                 return MyHomePage();
               } else {
@@ -66,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Ivykiai',
+          translate(Keys.Window_Events),
           style: TextStyle(color: Color(0xFF000000)),
         ),
         backgroundColor: Color(0xFFFFFFFF),
@@ -75,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         stream: events.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return Text(translate(Keys.Errors_Unknown));
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -85,10 +90,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF690335)),
                 ),
                 Container(width: 20, height: 20),
-                new Text("Kraunasi..."),
+                new Text(translate(Keys.Custom_Loading)),
               ]),
             );
           }
+
+          double paddingSmall = MediaQuery.of(context).size.width * 0.03;
+          double paddingLarge = MediaQuery.of(context).size.width * 0.05;
 
           return new ListView(
             children: snapshot.data!.docs
@@ -98,11 +106,53 @@ class _MyHomePageState extends State<MyHomePage> {
                 })
                 .toList()
                 .map((Event event) {
-                  return new Row(
+                  return new Column(
                     children: [
-                      Text(event.type),
-                      Text(event.createdAt.toString()),
-                      Text(event.metadata.toString()),
+                      IntrinsicHeight(
+                          child: Row(
+                        children: [
+                          Container(
+                              padding: EdgeInsets.fromLTRB(
+                                  paddingSmall, paddingLarge, paddingSmall, 0),
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              child: Center(
+                                child: Column(
+                                  children: [
+                                    Text(DateFormat('yyyy-MM-dd')
+                                        .format(event.createdAt)),
+                                    Text(DateFormat('kk:mm')
+                                        .format(event.createdAt)),
+                                  ],
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                ),
+                              )),
+                          VilniusUniversityVerticalDivider(),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(
+                                paddingSmall, paddingLarge, paddingSmall, 0),
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            child: Column(
+                              children: [
+                                Text(event.metadata.toString()),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 30, 15, 5),
+                                  child: TextButton(
+                                    onPressed: () {},
+                                    child: Text(translate(
+                                        'button.event.action.' + event.type)),
+                                    style: VilniusUniversityButtonStyle(),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      )),
+                      Container(
+                        child: Divider(
+                          color: Color(0xFFD1D1D1),
+                        ),
+                      )
                     ],
                   );
                 })
@@ -116,21 +166,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Expanded(
               child: TextButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      return Color(0xFF690335);
-                    },
-                  ),
-                  foregroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      return Color(0xFFFFFFFF);
-                    },
-                  ),
-                ),
+                style: VilniusUniversityButtonStyle(),
                 onPressed: () {},
                 icon: Icon(Icons.arrow_upward),
-                label: Text("Meniu"),
+                label: Text(translate(Keys.Button_Navigation_Menu)),
               ),
             ),
           ],
