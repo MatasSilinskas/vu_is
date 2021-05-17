@@ -20,7 +20,13 @@
       }
     },
     "navigation": {
-      "menu": "Meniu"
+      "menu": "Meniu",
+      "events": "Įvykiai",
+      "registrations": "Registracijos",
+      "exams": "Egzaminai",
+      "results": "Rezultatai",
+      "requests": "Prašymai",
+      "settings": "Nustatymai"
     }
   },
   "window": {

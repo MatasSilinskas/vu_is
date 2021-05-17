@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class VilniusUniversityButtonStyle extends ButtonStyle {
+  VilniusUniversityButtonStyle() : super();
+
+  VilniusUniversityButtonStyle.leftAlignedText()
+      : super(alignment: Alignment.centerLeft);
+
+  VilniusUniversityButtonStyle.rightAlignedText()
+      : super(alignment: Alignment.centerRight);
 
   @override
   MaterialStateProperty<Color?>? get backgroundColor =>

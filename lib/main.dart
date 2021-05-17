@@ -5,9 +5,10 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:vu_is/localization/keys.dart';
+import 'package:vu_is/style/button_style.dart';
+import 'package:vu_is/widgets/navigation.dart';
 
 import 'models/event.dart';
-import 'models/style/button_style.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -164,23 +165,8 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
       ),
-      bottomNavigationBar: new BottomAppBar(
-        color: Color(0xFF690335),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Expanded(
-              child: TextButton.icon(
-                style: VilniusUniversityButtonStyle(),
-                onPressed: () {},
-                icon: Icon(Icons.arrow_upward),
-                label: Text(translate(Keys.Button_Navigation_Menu)),
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar:
+          new BottomAppBar(color: Color(0xFF690335), child: Navigation()),
     );
   }
 }
-
