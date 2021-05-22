@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
-import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/style/button_style.dart';
-import 'package:vu_is/widgets/navigation.dart';
-
-import 'models/event.dart';
+import 'package:vu_is/pages/events.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +37,7 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else if (snapshot.hasData) {
-                return MyHomePage();
+                return EventsPage();
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
@@ -51,122 +45,6 @@ class MyApp extends StatelessWidget {
               }
             },
           )),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage() : super();
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    CollectionReference events =
-        FirebaseFirestore.instance.collection('events');
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          translate(Keys.Window_Events),
-          style: TextStyle(color: Color(0xFF000000)),
-        ),
-        backgroundColor: Color(0xFFFFFFFF),
-      ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: events.orderBy('createdAt', descending: true).snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text(translate(Keys.Errors_Unknown));
-          }
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Row(mainAxisSize: MainAxisSize.min, children: [
-                new CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF690335)),
-                ),
-                Container(width: 20, height: 20),
-                new Text(translate(Keys.Custom_Loading)),
-              ]),
-            );
-          }
-
-          double paddingSmall = MediaQuery.of(context).size.width * 0.03;
-          double paddingLarge = MediaQuery.of(context).size.width * 0.05;
-
-          return new ListView(
-            children: snapshot.data!.docs
-                .map((DocumentSnapshot document) {
-                  return new Event.fromJson(
-                      document.data() as Map<String, dynamic>);
-                })
-                .toList()
-                .map((Event event) {
-                  return new IntrinsicHeight(
-                      child: Row(
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                              border: Border(
-                            bottom: BorderSide(
-                              color: Color(0xFFD1D1D1),
-                            ),
-                            right: BorderSide(
-                              color: Color(0xFFD1D1D1),
-                            ),
-                          )),
-                          padding: EdgeInsets.fromLTRB(
-                              paddingSmall, paddingLarge, paddingSmall, 0),
-                          width: MediaQuery.of(context).size.width * 0.27,
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Text(DateFormat('yyyy-MM-dd')
-                                    .format(event.createdAt)),
-                                Text(DateFormat('kk:mm')
-                                    .format(event.createdAt)),
-                              ],
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                            ),
-                          )),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border(
-                          bottom: BorderSide(
-                            color: Color(0xFFD1D1D1),
-                          ),
-                        )),
-                        padding: EdgeInsets.fromLTRB(
-                            paddingSmall, paddingLarge, paddingSmall, 0),
-                        width: MediaQuery.of(context).size.width * 0.73,
-                        child: Column(
-                          children: [
-                            Text(event.metadata.toString()),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(15, 30, 15, 5),
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Text(translate(
-                                    'button.event.action.' + event.type)),
-                                style: VilniusUniversityButtonStyle(),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ));
-                })
-                .toList(),
-          );
-        },
-      ),
-      bottomNavigationBar:
-          new BottomAppBar(color: Color(0xFF690335), child: Navigation()),
     );
   }
 }

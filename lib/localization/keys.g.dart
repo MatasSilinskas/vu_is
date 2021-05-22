@@ -50,7 +50,19 @@ class Keys {
 
   static const String Window_Events = 'window.events';
 
+  static const String Window_Results = 'window.results';
+
   static const String Custom_Loading = 'custom.loading';
 
   static const String Errors_Unknown = 'errors.unknown';
+
+  static const String Tabs_Semesterresults = 'tabs.semesterResults';
+
+  static const String Tabs_Studyresults = 'tabs.studyResults';
+
+  static const String Studies_Averagegrade = 'studies.averageGrade';
+
+  static const String Studies_Credits = 'studies.credits';
+
+  static const String Studies_Semestername = 'studies.semesterName';
 }

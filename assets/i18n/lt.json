@@ -30,12 +30,22 @@
     }
   },
   "window": {
-    "events": "Įvykiai"
+    "events": "Įvykiai",
+    "results": "Rezultatai"
   },
   "custom": {
     "loading": "Kraunasi..."
   },
   "errors": {
     "unknown": "Įvyko klaida"
+  },
+  "tabs": {
+    "semesterResults": "Semestro rezultatai",
+    "studyResults": "Bendri rezultatai"
+  },
+  "studies": {
+    "averageGrade": "Bendras vidurkis:",
+    "credits": "Kreditai:",
+    "semesterName": "{identifier} semestras"
   }
 }

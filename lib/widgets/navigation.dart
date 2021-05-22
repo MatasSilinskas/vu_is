@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/models/user.dart';
+import 'package:vu_is/pages/events.dart';
+import 'package:vu_is/pages/study_results.dart';
 import 'package:vu_is/style/button_style.dart';
 
 class Navigation extends StatefulWidget {
@@ -42,7 +44,12 @@ class NavigationState<T> extends State<Navigation> {
         ),
         TextButton.icon(
           style: VilniusUniversityButtonStyle.leftAlignedText(),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EventsPage()),
+            );
+          },
           icon: Icon(Icons.bolt),
           label: Text(translate(Keys.Button_Navigation_Events)),
         ),
@@ -63,7 +70,12 @@ class NavigationState<T> extends State<Navigation> {
         _navigationItemDivider(),
         TextButton.icon(
           style: VilniusUniversityButtonStyle.leftAlignedText(),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => StudyResultsPage()),
+            );
+          },
           icon: Icon(Icons.school),
           label: Text(translate(Keys.Button_Navigation_Results)),
         ),
