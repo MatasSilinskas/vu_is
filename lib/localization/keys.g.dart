@@ -106,6 +106,8 @@ class Keys {
 
   static const String Studies_Averagegrade = 'studies.averageGrade';
 
+  static const String Studies_Semesters = 'studies.semesters';
+
   static const String Studies_Credits = 'studies.credits';
 
   static const String Studies_Semestername = 'studies.semesterName';

@@ -7,17 +7,31 @@ import 'package:vu_is/pages/study_results/models/subject_grade.dart';
 import 'package:vu_is/pages/study_results/widgets/average_grade.dart';
 import 'package:vu_is/pages/study_results/widgets/semester_tile.dart';
 import 'package:vu_is/pages/study_results/widgets/subject_tile.dart';
+import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/shared/widgets/vu_data_loader.dart';
 import 'package:vu_is/shared/widgets/vu_tab_controller.dart';
 
 class StudyResultsPage extends StatefulWidget {
-  StudyResultsPage() : super();
+  final String? selectedSemesterId;
+  final User user;
+
+  StudyResultsPage({this.selectedSemesterId, required this.user}) : super();
 
   @override
-  _StudyResultsPageState createState() => _StudyResultsPageState();
+  _StudyResultsPageState createState() => _StudyResultsPageState(
+      selectedSemesterId: this.selectedSemesterId == null
+          ? this.user.semesterId
+          : this.selectedSemesterId!,
+      user: this.user);
 }
 
 class _StudyResultsPageState extends State<StudyResultsPage> {
+  String selectedSemesterId;
+  final User user;
+
+  _StudyResultsPageState(
+      {required this.selectedSemesterId, required this.user});
+
   @override
   Widget build(BuildContext context) {
     CollectionReference semesters =
@@ -27,6 +41,7 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
         FirebaseFirestore.instance.collection('subjectGrades');
 
     return VuTabController(
+      user: this.user,
       title: Keys.Window_Results,
       tabs: [
         Tab(
@@ -37,7 +52,12 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
       bodies: [
         Scaffold(
             body: StreamBuilder<QuerySnapshot>(
-          stream: subjectGrades.snapshots(),
+          stream: subjectGrades
+              .where('semester',
+                  isEqualTo: FirebaseFirestore.instance
+                      .collection('semesters')
+                      .doc(this.selectedSemesterId))
+              .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
@@ -57,12 +77,76 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
             Container averageGrade =
                 new AverageGrade(gradesList: subjectGradeData);
 
+            Container semesterDropdown = new Container(
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    new Text(translate(Keys.Studies_Semesters)),
+                    new StreamBuilder(
+                        stream: semesters
+                            .where('user',
+                                isEqualTo: FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(user.id))
+                            .orderBy('identifier')
+                            .snapshots(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text(translate(Keys.Errors_Unknown));
+                          }
+
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return new VuDataLoader();
+                          }
+
+                          List<Semester> semesterData = snapshot.data!.docs
+                              .map((DocumentSnapshot document) {
+                            var documentData =
+                                document.data() as Map<String, dynamic>;
+                            documentData.addAll({'id': document.id});
+
+                            return new Semester.fromJson(documentData);
+                          }).toList();
+
+                          return new DropdownButtonHideUnderline(
+                              child: new Container(
+                            height: 39,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black)),
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: selectedSemesterId,
+                              icon: new Icon(Icons.keyboard_arrow_down),
+                              iconSize: 24,
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedSemesterId = newValue!;
+                                });
+                              },
+                              items: semesterData.map((Semester semester) {
+                                return DropdownMenuItem<String>(
+                                  value: semester.id,
+                                  child: Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(semester.toString())),
+                                );
+                              }).toList(),
+                            ),
+                          ));
+                        }),
+                  ]),
+            );
+
             return ListView(
-              children: [averageGrade] +
+              children: [averageGrade, semesterDropdown] +
                   subjectGradeData.map((SubjectGrade subjectGrade) {
                     return new Container(
                         child: new Card(
-                      child: SubjectTile.fromSubjectGrade(subjectGrade, context),
+                      child:
+                          SubjectTile.fromSubjectGrade(subjectGrade, context),
                     ));
                   }).toList(),
             );
@@ -70,7 +154,13 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
         )),
         Scaffold(
             body: StreamBuilder<QuerySnapshot>(
-          stream: semesters.orderBy('identifier').snapshots(),
+          stream: semesters
+              .where('user',
+                  isEqualTo: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(user.id))
+              .orderBy('identifier')
+              .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
@@ -81,10 +171,13 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
               return new VuDataLoader();
             }
 
-            List<Semester> semesterData =
-                snapshot.data!.docs.map((DocumentSnapshot document) {
-              return new Semester.fromJson(
-                  document.data() as Map<String, dynamic>);
+            List<Semester> semesterData = snapshot.data!.docs
+                .map((DocumentSnapshot document) {
+              var documentData =
+              document.data() as Map<String, dynamic>;
+              documentData.addAll({'id': document.id});
+
+              return new Semester.fromJson(documentData);
             }).toList();
 
             Container averageGrade = new AverageGrade(gradesList: semesterData);
@@ -94,7 +187,8 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
                   semesterData.map((Semester semester) {
                     return new Container(
                         child: new Card(
-                            child: SemesterTile.fromSemester(semester, context)));
+                            child:
+                                SemesterTile.fromSemester(semester, context)));
                   }).toList(),
             );
           },

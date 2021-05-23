@@ -63,6 +63,7 @@
   },
   "studies": {
     "averageGrade": "Bendras vidurkis:",
+    "semesters": "Semestras:",
     "credits": "Kreditai:",
     "semesterName": "{identifier} semestras",
     "type": {

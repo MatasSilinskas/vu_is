@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,23 +9,19 @@ import 'package:vu_is/pages/study_results/study_results.dart';
 import 'package:vu_is/shared/style/button_style.dart';
 
 class Navigation extends StatefulWidget {
+  final User user;
+
+  Navigation({required this.user});
+
   @override
-  NavigationState createState() => NavigationState();
+  NavigationState createState() => NavigationState(user: user);
 }
 
 class NavigationState<T> extends State<Navigation> {
   bool _isExpanded = false;
-  User? _user;
+  User user;
 
-  NavigationState() {
-    FirebaseFirestore.instance
-        .collection('users')
-        .where('username', isEqualTo: 'testUser')
-        .get()
-        .then((value) => setState(() {
-              _user = User.fromJson(value.docs.first.data());
-            }));
-  }
+  NavigationState({required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +32,7 @@ class NavigationState<T> extends State<Navigation> {
         TextButton.icon(
           style: VilniusUniversityButtonStyle.rightAlignedText(),
           onPressed: () {},
-          icon: _user == null
-              ? Text('')
-              : Text(_user!.name + ' ' + _user!.surname),
+          icon: Text(user.name + ' ' + user.surname),
           label: Icon(Icons.person),
         ),
         TextButton.icon(
@@ -47,7 +40,7 @@ class NavigationState<T> extends State<Navigation> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => EventsPage()),
+              MaterialPageRoute(builder: (context) => EventsPage(user: user)),
             );
           },
           icon: Icon(Icons.bolt),
@@ -73,7 +66,10 @@ class NavigationState<T> extends State<Navigation> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => StudyResultsPage()),
+              MaterialPageRoute(
+                  builder: (context) => StudyResultsPage(
+                        user: user,
+                      )),
             );
           },
           icon: Icon(Icons.school),

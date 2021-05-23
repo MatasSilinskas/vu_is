@@ -4,27 +4,40 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:intl/intl.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/events/models/event.dart';
+import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/shared/style/button_style.dart';
 import 'package:vu_is/shared/widgets/vu_data_loader.dart';
 import 'package:vu_is/shared/widgets/vu_scaffold.dart';
 
 class EventsPage extends StatefulWidget {
-  EventsPage() : super();
+  final User user;
+
+  EventsPage({required this.user}) : super();
 
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _EventsPageState createState() => _EventsPageState(this.user);
 }
 
 class _EventsPageState extends State<EventsPage> {
+  final User user;
+
+  _EventsPageState(this.user);
+
   @override
   Widget build(BuildContext context) {
     CollectionReference events =
         FirebaseFirestore.instance.collection('events');
 
     return new VuScaffold(
+      user: this.user,
       title: Keys.Window_Events,
       body: StreamBuilder<QuerySnapshot>(
-        stream: events.orderBy('createdAt', descending: true).snapshots(),
+        stream: events
+            .where('user',
+                isEqualTo:
+                    FirebaseFirestore.instance.collection('users').doc(user.id))
+            .orderBy('createdAt', descending: true)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text(translate(Keys.Errors_Unknown));

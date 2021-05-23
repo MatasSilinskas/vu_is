@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
-import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/study_results/models/semester.dart';
 
 class SemesterTile extends ListTile {
@@ -29,7 +27,6 @@ class SemesterTile extends ListTile {
           ),
           title: new Container(
               width: MediaQuery.of(context).size.width * 0.6,
-              child: new Text(translate(Keys.Studies_Semestername,
-                  args: {'identifier': semester.identifier}))),
+              child: new Text(semester.toString())),
         );
 }

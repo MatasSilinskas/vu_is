@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:vu_is/shared/models/user.dart';
 
 import 'navigation.dart';
 
 class VuTabController extends DefaultTabController {
+  final User user;
+
   VuTabController(
-      {required List<Widget> tabs,
+      {required this.user,
+      required List<Widget> tabs,
       required List<Widget> bodies,
       required String title})
       : super(
@@ -29,8 +33,11 @@ class VuTabController extends DefaultTabController {
             body: TabBarView(
               children: bodies,
             ),
-            bottomNavigationBar:
-                new BottomAppBar(color: Color(0xFF690335), child: Navigation()),
+            bottomNavigationBar: new BottomAppBar(
+                color: Color(0xFF690335),
+                child: Navigation(
+                  user: user,
+                )),
           ),
         );
 }
