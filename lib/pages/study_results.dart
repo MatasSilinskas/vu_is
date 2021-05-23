@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/models/semester.dart';
+import 'package:vu_is/widgets/average_grade.dart';
 import 'package:vu_is/widgets/semester_tile.dart';
 import 'package:vu_is/widgets/vu_data_loader.dart';
 import 'package:vu_is/widgets/vu_tab_controller.dart';
@@ -49,40 +50,10 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
                   document.data() as Map<String, dynamic>);
             }).toList();
 
+            Container averageGrade = new AverageGrade(gradesList: semesterData);
+
             return ListView(
-              children: [
-                    new Container(
-                      padding: EdgeInsets.only(bottom: 20),
-                      child: new Column(
-                        children: [
-                          new Padding(
-                              padding: EdgeInsets.only(top: 20, bottom: 10),
-                              child: Text(
-                                translate(Keys.Studies_Averagegrade),
-                              )),
-                          new Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              new SizedBox(
-                                  width: 60,
-                                  child: new Center(
-                                    child: Text(_getAverageGrade(semesterData),
-                                        style: TextStyle(fontSize: 21)),
-                                  )),
-                              new Column(
-                                children: [
-                                  new Text(translate(Keys.Studies_Credits)),
-                                  new Text(_getObtainedCredits(semesterData) +
-                                      '/' +
-                                      _getMaxCredits(semesterData))
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ] +
+              children: [averageGrade] +
                   semesterData.map((Semester semester) {
                     return new Container(
                         child: new Card(
@@ -94,32 +65,4 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
       ],
     );
   }
-}
-
-String _getAverageGrade(List<Semester> semesterData) {
-  Iterable<int> grades = semesterData.map((Semester e) => e.grade);
-  int gradesSum = grades.reduce((int value, int element) => value + element);
-  String averageGrade = (gradesSum / semesterData.length).toStringAsFixed(2);
-
-  return averageGrade;
-}
-
-String _getMaxCredits(List<Semester> semesterData) {
-  Iterable<int> maxCredits = semesterData.map((Semester e) => e.maxCredits);
-
-  String maxCreditsSum =
-      maxCredits.reduce((int value, int element) => value + element).toString();
-
-  return maxCreditsSum;
-}
-
-String _getObtainedCredits(List<Semester> semesterData) {
-  Iterable<int> obtainedCredits =
-      semesterData.map((Semester e) => e.obtainedCredits);
-
-  String obtainedCreditsSum = obtainedCredits
-      .reduce((int value, int element) => value + element)
-      .toString();
-
-  return obtainedCreditsSum;
 }
