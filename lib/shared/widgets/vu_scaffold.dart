@@ -10,7 +10,7 @@ class VuScaffold extends Scaffold {
   PreferredSizeWidget? get appBar => AppBar(
         title: Text(
           translate(this.title),
-          style: TextStyle(color: Color(0xFF000000)),
+          style: TextStyle(color: Color(0xFF000000), fontSize: 24),
         ),
         backgroundColor: Color(0xFFFFFFFF),
         leading: BackButton(color: new Color(0xFF919191)),

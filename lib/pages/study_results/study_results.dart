@@ -54,13 +54,16 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
                   document.data() as Map<String, dynamic>);
             }).toList();
 
-            Container averageGrade = new AverageGrade(gradesList: subjectGradeData);
+            Container averageGrade =
+                new AverageGrade(gradesList: subjectGradeData);
 
             return ListView(
               children: [averageGrade] +
                   subjectGradeData.map((SubjectGrade subjectGrade) {
                     return new Container(
-                        child: new Card(child: SubjectTile.fromSubjectGrade(subjectGrade),));
+                        child: new Card(
+                      child: SubjectTile.fromSubjectGrade(subjectGrade),
+                    ));
                   }).toList(),
             );
           },

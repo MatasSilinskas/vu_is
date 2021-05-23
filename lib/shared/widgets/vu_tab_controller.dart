@@ -15,7 +15,7 @@ class VuTabController extends DefaultTabController {
               automaticallyImplyLeading: false,
               title: Text(
                 translate(title),
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontSize: 24),
               ),
               bottom: TabBar(
                 tabs: tabs,
