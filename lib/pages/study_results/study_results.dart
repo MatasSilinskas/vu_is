@@ -62,7 +62,7 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
                   subjectGradeData.map((SubjectGrade subjectGrade) {
                     return new Container(
                         child: new Card(
-                      child: SubjectTile.fromSubjectGrade(subjectGrade),
+                      child: SubjectTile.fromSubjectGrade(subjectGrade, context),
                     ));
                   }).toList(),
             );
