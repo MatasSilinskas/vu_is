@@ -19,9 +19,7 @@ class StudyResultsPage extends StatefulWidget {
 
   @override
   _StudyResultsPageState createState() => _StudyResultsPageState(
-      selectedSemesterId: this.selectedSemesterId == null
-          ? this.user.semesterId
-          : this.selectedSemesterId!,
+      selectedSemesterId: this.selectedSemesterId == null ? this.user.semesterId : this.selectedSemesterId!,
       user: this.user);
 }
 
@@ -29,37 +27,31 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
   String selectedSemesterId;
   final User user;
 
-  _StudyResultsPageState(
-      {required this.selectedSemesterId, required this.user});
+  _StudyResultsPageState({required this.selectedSemesterId, required this.user});
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference semesters =
-        FirebaseFirestore.instance.collection('semesters');
+    CollectionReference semesters = FirebaseFirestore.instance.collection('semesters');
 
-    CollectionReference subjectGrades =
-        FirebaseFirestore.instance.collection('subjectGrades');
+    CollectionReference subjectGrades = FirebaseFirestore.instance.collection('subjectGrades');
 
     return VuTabController(
       user: this.user,
       title: Keys.Window_Results,
       tabs: [
+        Tab(text: translate(Keys.Tabs_Studyresults)),
         Tab(
           text: translate(Keys.Tabs_Semesterresults),
         ),
-        Tab(text: translate(Keys.Tabs_Studyresults)),
       ],
       bodies: [
         Scaffold(
             body: StreamBuilder<QuerySnapshot>(
-          stream: subjectGrades
-              .where('semester',
-                  isEqualTo: FirebaseFirestore.instance
-                      .collection('semesters')
-                      .doc(this.selectedSemesterId))
+          stream: semesters
+              .where('user', isEqualTo: FirebaseFirestore.instance.collection('users').doc(user.id))
+              .orderBy('identifier')
               .snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text(translate(Keys.Errors_Unknown));
             }
@@ -68,132 +60,113 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
               return new VuDataLoader();
             }
 
-            List<SubjectGrade> subjectGradeData =
-                snapshot.data!.docs.map((DocumentSnapshot document) {
-              return new SubjectGrade.fromJson(
-                  document.data() as Map<String, dynamic>);
-            }).toList();
-
-            Container averageGrade =
-                new AverageGrade(gradesList: subjectGradeData);
-
-            Container semesterDropdown = new Container(
-              padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
-              child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    new Text(translate(Keys.Studies_Semesters)),
-                    new StreamBuilder(
-                        stream: semesters
-                            .where('user',
-                                isEqualTo: FirebaseFirestore.instance
-                                    .collection('users')
-                                    .doc(user.id))
-                            .orderBy('identifier')
-                            .snapshots(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return Text(translate(Keys.Errors_Unknown));
-                          }
-
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return new VuDataLoader();
-                          }
-
-                          List<Semester> semesterData = snapshot.data!.docs
-                              .map((DocumentSnapshot document) {
-                            var documentData =
-                                document.data() as Map<String, dynamic>;
-                            documentData.addAll({'id': document.id});
-
-                            return new Semester.fromJson(documentData);
-                          }).toList();
-
-                          return new DropdownButtonHideUnderline(
-                              child: new Container(
-                            height: 39,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black)),
-                            child: DropdownButton<String>(
-                              isExpanded: true,
-                              value: selectedSemesterId,
-                              icon: new Icon(Icons.keyboard_arrow_down),
-                              iconSize: 24,
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  selectedSemesterId = newValue!;
-                                });
-                              },
-                              items: semesterData.map((Semester semester) {
-                                return DropdownMenuItem<String>(
-                                  value: semester.id,
-                                  child: Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(semester.toString())),
-                                );
-                              }).toList(),
-                            ),
-                          ));
-                        }),
-                  ]),
-            );
-
-            return ListView(
-              children: [averageGrade, semesterDropdown] +
-                  subjectGradeData.map((SubjectGrade subjectGrade) {
-                    return new Container(
-                        child: new Card(
-                      child:
-                          SubjectTile.fromSubjectGrade(subjectGrade, context),
-                    ));
-                  }).toList(),
-            );
+            return _buildSemesterView(context, snapshot);
           },
         )),
         Scaffold(
             body: StreamBuilder<QuerySnapshot>(
-          stream: semesters
-              .where('user',
-                  isEqualTo: FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(user.id))
-              .orderBy('identifier')
-              .snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return Text(translate(Keys.Errors_Unknown));
-            }
+              stream: subjectGrades
+                  .where('semester',
+                  isEqualTo: FirebaseFirestore.instance.collection('semesters').doc(this.selectedSemesterId))
+                  .snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text(translate(Keys.Errors_Unknown));
+                }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return new VuDataLoader();
-            }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return new VuDataLoader();
+                }
 
-            List<Semester> semesterData = snapshot.data!.docs
-                .map((DocumentSnapshot document) {
-              var documentData =
-              document.data() as Map<String, dynamic>;
-              documentData.addAll({'id': document.id});
+                List<SubjectGrade> subjectGradeData = snapshot.data!.docs.map((DocumentSnapshot document) {
+                  return new SubjectGrade.fromJson(document.data() as Map<String, dynamic>);
+                }).toList();
 
-              return new Semester.fromJson(documentData);
-            }).toList();
+                Container averageGrade = new AverageGrade(gradesList: subjectGradeData);
 
-            Container averageGrade = new AverageGrade(gradesList: semesterData);
+                Container semesterDropdown = new Container(
+                  padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                  child: new Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    new Text(translate(Keys.Studies_Semesters)),
+                    new StreamBuilder(
+                        stream: semesters
+                            .where('user', isEqualTo: FirebaseFirestore.instance.collection('users').doc(user.id))
+                            .orderBy('identifier')
+                            .snapshots(),
+                        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return Text(translate(Keys.Errors_Unknown));
+                          }
 
-            return ListView(
-              children: [averageGrade] +
-                  semesterData.map((Semester semester) {
-                    return new Container(
-                        child: new Card(
-                            child:
-                                SemesterTile.fromSemester(semester, context)));
-                  }).toList(),
-            );
-          },
-        ))
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return new VuDataLoader();
+                          }
+
+                          return _buildSemesterDropdown(snapshot);
+                        }),
+                  ]),
+                );
+
+                return ListView(
+                  children: [averageGrade, semesterDropdown] +
+                      subjectGradeData.map((SubjectGrade subjectGrade) {
+                        return new Container(
+                            child: new Card(
+                              child: SubjectTile.fromSubjectGrade(subjectGrade, context),
+                            ));
+                      }).toList(),
+                );
+              },
+            )),
       ],
     );
+  }
+
+  DropdownButtonHideUnderline _buildSemesterDropdown(AsyncSnapshot<QuerySnapshot> snapshot) {
+    List<Semester> semesterData = _getSemesterDataFromSnapshot(snapshot);
+
+    return new DropdownButtonHideUnderline(
+        child: new Container(
+          height: 39,
+          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          child: DropdownButton<String>(
+            isExpanded: true,
+            value: selectedSemesterId,
+            icon: new Icon(Icons.keyboard_arrow_down),
+            iconSize: 24,
+            onChanged: (String? newValue) {
+              setState(() {
+                selectedSemesterId = newValue!;
+              });
+            },
+            items: semesterData.map((Semester semester) {
+              return DropdownMenuItem<String>(
+                value: semester.id,
+                child: Padding(padding: EdgeInsets.only(left: 10), child: Text(semester.toString())),
+              );
+            }).toList(),
+          ),
+        ));
+  }
+
+  ListView _buildSemesterView(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    List<Semester> semesterData = _getSemesterDataFromSnapshot(snapshot);
+    Container averageGrade = new AverageGrade(gradesList: semesterData);
+
+    return ListView(
+      children: [averageGrade] +
+          semesterData.map((Semester semester) {
+            return new Container(child: new Card(child: SemesterTile.fromSemester(semester, context)));
+          }).toList(),
+    );
+  }
+
+  List<Semester> _getSemesterDataFromSnapshot(AsyncSnapshot<QuerySnapshot> snapshot) {
+    return snapshot.data!.docs.map((DocumentSnapshot document) {
+      var documentData = document.data() as Map<String, dynamic>;
+      documentData.addAll({'id': document.id});
+
+      return new Semester.fromJson(documentData);
+    }).toList();
   }
 }
