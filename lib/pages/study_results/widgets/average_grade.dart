@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/grade.dart';
+import 'package:vu_is/shared/models/grade.dart';
 
 class AverageGrade extends Container {
   AverageGrade({required List<Grade> gradesList})

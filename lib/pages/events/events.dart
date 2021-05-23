@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:intl/intl.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/event.dart';
-import 'package:vu_is/style/button_style.dart';
-import 'package:vu_is/widgets/vu_data_loader.dart';
-import 'package:vu_is/widgets/vu_scaffold.dart';
+import 'package:vu_is/pages/events/models/event.dart';
+import 'package:vu_is/shared/style/button_style.dart';
+import 'package:vu_is/shared/widgets/vu_data_loader.dart';
+import 'package:vu_is/shared/widgets/vu_scaffold.dart';
 
 class EventsPage extends StatefulWidget {
   EventsPage() : super();

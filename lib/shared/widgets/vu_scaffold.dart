@@ -5,7 +5,6 @@ import 'navigation.dart';
 
 class VuScaffold extends Scaffold {
   final String title;
-  List<Widget>? tabs;
 
   @override
   PreferredSizeWidget? get appBar => AppBar(

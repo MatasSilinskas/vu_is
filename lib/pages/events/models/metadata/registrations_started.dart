@@ -1,6 +1,6 @@
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/metadata.dart';
+import 'package:vu_is/pages/events/models/metadata.dart';
 
 class RegistrationsStarted extends Metadata {
   RegistrationsStarted();

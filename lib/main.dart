@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:vu_is/pages/events.dart';
+import 'package:vu_is/pages/events/events.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

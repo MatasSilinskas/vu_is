@@ -1,8 +1,7 @@
-import 'package:vu_is/models/metadata/grade_added_metadata.dart';
-import 'package:vu_is/models/metadata/registrations_incoming.dart';
-import 'package:vu_is/models/metadata/registrations_started.dart';
-
 import 'event.dart';
+import 'metadata/grade_added_metadata.dart';
+import 'metadata/registrations_incoming.dart';
+import 'metadata/registrations_started.dart';
 
 class Metadata {
   Metadata();

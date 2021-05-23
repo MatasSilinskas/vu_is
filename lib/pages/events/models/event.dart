@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vu_is/models/metadata.dart';
+import 'package:vu_is/pages/events/models/metadata.dart';
 
 part 'event.g.dart';
 

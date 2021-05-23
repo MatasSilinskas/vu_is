@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/semester.dart';
-import 'package:vu_is/widgets/average_grade.dart';
-import 'package:vu_is/widgets/semester_tile.dart';
-import 'package:vu_is/widgets/vu_data_loader.dart';
-import 'package:vu_is/widgets/vu_tab_controller.dart';
+import 'package:vu_is/pages/study_results/models/semester.dart';
+import 'package:vu_is/pages/study_results/widgets/average_grade.dart';
+import 'package:vu_is/pages/study_results/widgets/semester_tile.dart';
+import 'package:vu_is/shared/widgets/vu_data_loader.dart';
+import 'package:vu_is/shared/widgets/vu_tab_controller.dart';
 
 class StudyResultsPage extends StatefulWidget {
   StudyResultsPage() : super();

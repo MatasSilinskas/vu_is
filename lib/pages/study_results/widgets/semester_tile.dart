@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/semester.dart';
+import 'package:vu_is/pages/study_results/models/semester.dart';
 
 class SemesterTile extends ListTile {
   SemesterTile.fromSemester(Semester semester)

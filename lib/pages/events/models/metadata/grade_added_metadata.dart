@@ -1,8 +1,8 @@
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/metadata.dart';
-import 'package:vu_is/models/metadata/subject.dart';
+import 'package:vu_is/pages/events/models/metadata.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:vu_is/pages/events/models/metadata/subject.dart';
 
 part 'grade_added_metadata.g.dart';
 

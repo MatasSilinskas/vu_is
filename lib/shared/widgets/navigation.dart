@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/models/user.dart';
-import 'package:vu_is/pages/events.dart';
-import 'package:vu_is/pages/study_results.dart';
-import 'package:vu_is/style/button_style.dart';
+import 'package:vu_is/shared/models/user.dart';
+import 'package:vu_is/pages/events/events.dart';
+import 'package:vu_is/pages/study_results/study_results.dart';
+import 'package:vu_is/shared/style/button_style.dart';
 
 class Navigation extends StatefulWidget {
   @override
