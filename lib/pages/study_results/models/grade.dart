@@ -4,4 +4,8 @@ abstract class Grade {
   final int grade;
 
   Grade(this.maxCredits, this.obtainedCredits, this.grade);
+
+  String getCredits() {
+    return obtainedCredits.toString() + '/' + maxCredits.toString();
+  }
 }

@@ -94,7 +94,7 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
                   semesterData.map((Semester semester) {
                     return new Container(
                         child: new Card(
-                            child: SemesterTile.fromSemester(semester)));
+                            child: SemesterTile.fromSemester(semester, context)));
                   }).toList(),
             );
           },

@@ -1,3 +1,4 @@
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/pages/study_results/models/study.dart';
 import 'package:vu_is/pages/study_results/models/grade.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -24,4 +25,10 @@ class SubjectGrade extends Grade {
       _$SubjectGradeFromJson(json);
 
   Map<String, dynamic> toJson() => _$SubjectGradeToJson(this);
+
+  @override
+  String toString() => translate('subject.type.' + this.type, args: {
+        'universityName': this.study.university.toString(),
+        'studyName': this.study.toString()
+      });
 }

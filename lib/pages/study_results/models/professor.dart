@@ -13,4 +13,8 @@ class Professor {
   factory Professor.fromJson(Map<String, dynamic> json) => _$ProfessorFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfessorToJson(this);
+
+  String getFullName() {
+    return this.name + ' ' + this.surname;
+  }
 }

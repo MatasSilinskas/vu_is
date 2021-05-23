@@ -18,7 +18,7 @@ class AverageGrade extends Container {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   new SizedBox(
-                      width: 60,
+                      width: 65,
                       child: new Center(
                         child: Text(_getAverageGrade(gradesList),
                             style: TextStyle(fontSize: 21)),
