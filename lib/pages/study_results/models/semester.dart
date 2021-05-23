@@ -1,4 +1,4 @@
-import 'package:vu_is/shared/models/grade.dart';
+import 'package:vu_is/pages/study_results/models/grade.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'semester.g.dart';

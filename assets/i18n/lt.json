@@ -6,9 +6,27 @@
   },
   "subject": {
     "title": {
-      "objective_programming": "Objektinis programavimas",
       "discrete_mathematics": "Diskrečioji matematika",
-      "algorithm_and_data_structures": "Algoritmai ir duomenų struktūros"
+      "it_and_communication_skills": "IT ir komunikacijos įgūdžiai",
+      "computer_architecture": "Kompiuterių architektūra",
+      "mathematics_for_software_engineers_1": "Matematika programų sistemoms I/III d.",
+      "procedural_programming": "Procedūrinis programavimas",
+      "foreign_language_1_english": "Užsienio kalba (anglų) I/II d.",
+      "algorithm_and_data_structures": "Algoritmai ir duomenų struktūros",
+      "algorithm_theory": "Algoritmų teorija",
+      "mathematics_for_software_engineers_2": "Matematika programų sistemoms II/III d.",
+      "objective_programming": "Objektinis programavimas",
+      "foreign_language_2_english": "Užsienio kalba (anglų) II/II d.",
+      "psychology": "Psichologija",
+      "database_management_systems": "Duomenų bazių valdymo sistemos",
+      "mathematical_logic": "Matematinė logika",
+      "software_engineering_1": "Programų sistemų inžinerija I/II d.",
+      "applied_oop": "Taikomasis objektinis programavimas",
+      "sociology": "Sociologija"
+    },
+    "type": {
+      "mandatory_subject": "{universityName} {studyName} privalomasis dalykas",
+      "bus_subject": "{universityName} bendrosios universitetinės studijos"
     }
   },
   "button": {
@@ -46,6 +64,14 @@
   "studies": {
     "averageGrade": "Bendras vidurkis:",
     "credits": "Kreditai:",
-    "semesterName": "{identifier} semestras"
+    "semesterName": "{identifier} semestras",
+    "type": {
+      "software_engineering": "PS"
+    }
+  },
+  "universities": {
+    "name": {
+      "vilnius_university": "VU"
+    }
   }
 }

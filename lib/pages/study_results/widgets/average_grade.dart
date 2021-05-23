@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/shared/models/grade.dart';
+import 'package:vu_is/pages/study_results/models/grade.dart';
 
 class AverageGrade extends Container {
   AverageGrade({required List<Grade> gradesList})
@@ -42,6 +42,14 @@ String _getAverageGrade(List<Grade> gradesData) {
   Iterable<int> grades = gradesData.map((Grade e) => e.grade);
   int gradesSum = grades.reduce((int value, int element) => value + element);
   String averageGrade = (gradesSum / gradesData.length).toStringAsFixed(2);
+
+  while (averageGrade.endsWith('0')) {
+    averageGrade = averageGrade.substring(0, averageGrade.length - 1);
+  }
+
+  if (averageGrade.endsWith('.')) {
+    averageGrade = averageGrade.substring(0, averageGrade.length - 1);
+  }
 
   return averageGrade;
 }

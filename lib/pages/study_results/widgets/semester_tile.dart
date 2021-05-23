@@ -13,6 +13,7 @@ class SemesterTile extends ListTile {
               child: new Center(
                   child: Text(
                 semester.grade.toString(),
+                style: TextStyle(fontSize: 21),
               )),
             ),
             new Padding(
