@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:vu_is/pages/study_results/models/semester.dart';
+import 'package:vu_is/shared/models/user.dart';
+
+import '../study_results.dart';
 
 class SemesterTile extends ListTile {
-  SemesterTile.fromSemester(Semester semester, BuildContext context)
+  SemesterTile.create(Semester semester, User user, BuildContext context)
       : super(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => StudyResultsPage(
+                        user: user,
+                        selectedSemesterId: semester.id,
+                        selectedPageNumber: StudyResultsPage.tabSemesterResults,
+                      )),
+            );
+          },
           leading: new SizedBox(
             width: MediaQuery.of(context).size.width * 0.15,
             child: new Center(
@@ -25,8 +39,6 @@ class SemesterTile extends ListTile {
               color: Color(0xFF690335),
             ),
           ),
-          title: new Container(
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: new Text(semester.toString())),
+          title: new Container(width: MediaQuery.of(context).size.width * 0.6, child: new Text(semester.toString())),
         );
 }

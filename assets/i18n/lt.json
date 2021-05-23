@@ -33,8 +33,7 @@
     "event": {
       "action": {
         "grade_added": "Peržiūrėti visus įvertinimus",
-        "registrations_incoming": "Peržiūrėti registracijas",
-        "registrations_started": "Peržiūrėti registracijas"
+        "registrations_reminder": "Peržiūrėti registracijas"
       }
     },
     "navigation": {

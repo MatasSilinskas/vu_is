@@ -11,8 +11,10 @@ class VuTabController extends DefaultTabController {
       {required this.user,
       required List<Widget> tabs,
       required List<Widget> bodies,
-      required String title})
+      required String title,
+      int selectedTabNumber = 0})
       : super(
+          initialIndex: selectedTabNumber,
           length: tabs.length,
           child: Scaffold(
             appBar: AppBar(

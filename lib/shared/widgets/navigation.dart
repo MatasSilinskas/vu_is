@@ -120,12 +120,7 @@ class NavigationState<T> extends State<Navigation> {
     return IntrinsicHeight(
         child: Column(
       mainAxisSize: MainAxisSize.max,
-      children: [
-        IntrinsicHeight(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: children))
-      ],
+      children: [IntrinsicHeight(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children))],
     ));
   }
 }

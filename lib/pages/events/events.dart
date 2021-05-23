@@ -4,6 +4,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:intl/intl.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/events/models/event.dart';
+import 'package:vu_is/pages/events/models/widget/event_button.dart';
 import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/shared/style/button_style.dart';
 import 'package:vu_is/shared/widgets/vu_data_loader.dart';
@@ -25,17 +26,14 @@ class _EventsPageState extends State<EventsPage> {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference events =
-        FirebaseFirestore.instance.collection('events');
+    CollectionReference events = FirebaseFirestore.instance.collection('events');
 
     return new VuScaffold(
       user: this.user,
       title: Keys.Window_Events,
       body: StreamBuilder<QuerySnapshot>(
         stream: events
-            .where('user',
-                isEqualTo:
-                    FirebaseFirestore.instance.collection('users').doc(user.id))
+            .where('user', isEqualTo: FirebaseFirestore.instance.collection('users').doc(user.id))
             .orderBy('createdAt', descending: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -53,8 +51,7 @@ class _EventsPageState extends State<EventsPage> {
           return new ListView(
             children: snapshot.data!.docs
                 .map((DocumentSnapshot document) {
-                  return new Event.fromJson(
-                      document.data() as Map<String, dynamic>);
+                  return new Event.fromJson(document.data() as Map<String, dynamic>);
                 })
                 .toList()
                 .map((Event event) {
@@ -71,16 +68,13 @@ class _EventsPageState extends State<EventsPage> {
                               color: Color(0xFFD1D1D1),
                             ),
                           )),
-                          padding: EdgeInsets.fromLTRB(
-                              paddingSmall, paddingLarge, paddingSmall, 0),
+                          padding: EdgeInsets.fromLTRB(paddingSmall, paddingLarge, paddingSmall, 0),
                           width: MediaQuery.of(context).size.width * 0.27,
                           child: Center(
                             child: Column(
                               children: [
-                                Text(DateFormat('yyyy-MM-dd')
-                                    .format(event.createdAt)),
-                                Text(DateFormat('kk:mm')
-                                    .format(event.createdAt)),
+                                Text(DateFormat('yyyy-MM-dd').format(event.createdAt)),
+                                Text(DateFormat('kk:mm').format(event.createdAt)),
                               ],
                               crossAxisAlignment: CrossAxisAlignment.start,
                             ),
@@ -92,21 +86,14 @@ class _EventsPageState extends State<EventsPage> {
                             color: Color(0xFFD1D1D1),
                           ),
                         )),
-                        padding: EdgeInsets.fromLTRB(
-                            paddingSmall, paddingLarge, paddingSmall, 0),
+                        padding: EdgeInsets.fromLTRB(paddingSmall, paddingLarge, paddingSmall, 0),
                         width: MediaQuery.of(context).size.width * 0.73,
                         child: Column(
                           children: [
                             Text(event.metadata.toString()),
                             Padding(
-                              padding: EdgeInsets.fromLTRB(15, 30, 15, 5),
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Text(translate(
-                                    'button.event.action.' + event.type)),
-                                style: VilniusUniversityButtonStyle(),
-                              ),
-                            )
+                                padding: EdgeInsets.fromLTRB(15, 30, 15, 5),
+                                child: EventButton.create(event, user, context))
                           ],
                         ),
                       )

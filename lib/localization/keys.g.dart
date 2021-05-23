@@ -71,11 +71,8 @@ class Keys {
   static const String Button_Event_Action_Grade_Added =
       'button.event.action.grade_added';
 
-  static const String Button_Event_Action_Registrations_Incoming =
-      'button.event.action.registrations_incoming';
-
-  static const String Button_Event_Action_Registrations_Started =
-      'button.event.action.registrations_started';
+  static const String Button_Event_Action_Registrations_Reminder =
+      'button.event.action.registrations_reminder';
 
   static const String Button_Navigation_Menu = 'button.navigation.menu';
 
