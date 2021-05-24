@@ -26,9 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
       title: Keys.Window_Profile,
       tabs: [
         Tab(text: translate(Keys.Tabs_Studyinformation)),
-        Tab(
-          text: translate(Keys.Tabs_Userinformation),
-        ),
+        Tab(text: translate(Keys.Tabs_Userinformation)),
       ],
       bodies: [
         Scaffold(
@@ -51,32 +49,37 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Text(user.study.getFinanceInformation()),
               ),
               SizedBox(height: 20),
-              Row(                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(child: Text(translate(Keys.Studies_Start))),
                   Expanded(child: Text(user.study.start.year.toString())),
                 ],
               ),
-              Row(                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(child: Text(translate(Keys.Studies_Plannedend))),
                   Expanded(child: Text(DateFormat('yyyy-MM-dd').format(user.study.plannedEnd))),
                 ],
               ),
               SizedBox(height: 20),
-              Row(                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(child: Text(translate(Keys.Studies_Language))),
                   Expanded(child: Text(translate(user.study.getLanguage()))),
                 ],
               ),
-              Row(                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(child: Text(translate(Keys.Student_Acceptedgrade))),
                   Expanded(child: Text(user.study.acceptedGrade.toString())),
                 ],
               ),
-              Row(                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(child: Text(translate(Keys.Student_Status_Label))),
                   Expanded(child: Text(user.getStatus())),

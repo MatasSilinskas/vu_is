@@ -9,7 +9,7 @@ class VuTabController extends DefaultTabController {
 
   VuTabController(
       {required this.user,
-      required List<Widget> tabs,
+      required List<Tab> tabs,
       required List<Widget> bodies,
       required String title,
       int selectedTabNumber = 0})
@@ -25,9 +25,10 @@ class VuTabController extends DefaultTabController {
               ),
               bottom: TabBar(
                 tabs: tabs,
-                labelColor: Colors.black,
+                labelColor: Color(0xFF690335),
                 labelStyle: TextStyle(fontSize: 16),
                 indicatorColor: Color(0xFF690335),
+                unselectedLabelColor: Colors.black,
               ),
               backgroundColor: Colors.white,
               leading: BackButton(color: new Color(0xFF919191)),
