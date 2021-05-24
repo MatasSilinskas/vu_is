@@ -30,14 +30,12 @@ class StudentInformation extends Scaffold {
             ),
             SizedBox(height: 20),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(child: Text(translate(Keys.Studies_Start))),
                 Expanded(child: Text(user.study.start.year.toString())),
               ],
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(child: Text(translate(Keys.Studies_Plannedend))),
                 Expanded(child: Text(DateFormat('yyyy-MM-dd').format(user.study.plannedEnd))),
@@ -45,21 +43,18 @@ class StudentInformation extends Scaffold {
             ),
             SizedBox(height: 20),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(child: Text(translate(Keys.Studies_Language))),
                 Expanded(child: Text(translate(user.study.getLanguage()))),
               ],
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(child: Text(translate(Keys.Student_Acceptedgrade))),
                 Expanded(child: Text(user.study.acceptedGrade.toString())),
               ],
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(child: Text(translate(Keys.Student_Status_Label))),
                 Expanded(child: Text(user.getStatus())),

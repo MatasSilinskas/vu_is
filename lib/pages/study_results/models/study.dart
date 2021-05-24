@@ -16,5 +16,5 @@ class Study {
   Map<String, dynamic> toJson() => _$StudyToJson(this);
 
   @override
-  String toString() => translate('studies.type.' + this.direction);
+  String toString() => translate('studies.direction.' + this.direction);
 }

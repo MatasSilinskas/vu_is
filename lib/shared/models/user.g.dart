@@ -16,6 +16,10 @@ User _$UserFromJson(Map<String, dynamic> json) {
     studentNumber: json['studentNumber'] as int,
     study: Study.fromJson(json['study'] as Map<String, dynamic>),
     status: json['status'] as String,
+    country: json['country'] as String,
+    firstForeignLanguage: json['firstForeignLanguage'] as String,
+    gender: json['gender'] as String,
+    nationality: json['nationality'] as String,
   );
 }
 
@@ -26,6 +30,10 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'surname': instance.surname,
       'semesterId': instance.semesterId,
       'status': instance.status,
+      'country': instance.country,
+      'firstForeignLanguage': instance.firstForeignLanguage,
+      'gender': instance.gender,
+      'nationality': instance.nationality,
       'studentNumber': instance.studentNumber,
       'study': instance.study,
     };

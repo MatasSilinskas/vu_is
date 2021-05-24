@@ -64,5 +64,5 @@ class Study {
       });
 
   String getFinanceInformation() => translate('studies.finance.' + this.finance);
-  String getLanguage() => translate('studies.languages.' + this.language);
+  String getLanguage() => translate('languages.' + this.language);
 }

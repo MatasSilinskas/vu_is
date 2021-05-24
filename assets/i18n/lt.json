@@ -66,10 +66,11 @@
     "studyInformation": "Studijų informacija",
     "userInformation": "Asmens duomenys"
   },
+  "languages": {
+    "lt": "lietuvių",
+    "en": "anglų"
+  },
   "studies": {
-    "languages": {
-      "lt": "lietuvių"
-    },
     "finance": {
       "financed_by_country": "Studijos apmokamos valstybės biudžeto lėšomis."
     },

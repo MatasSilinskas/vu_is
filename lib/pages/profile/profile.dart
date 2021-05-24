@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
+import 'package:vu_is/pages/profile/widgets/profile_information.dart';
 import 'package:vu_is/pages/profile/widgets/student_information.dart';
 import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/shared/widgets/vu_tab_controller.dart';
@@ -30,7 +31,18 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
       bodies: [
         StudentInformation(user: user),
-        Scaffold(),
+        Scaffold(
+          body: Column(
+            children: [
+              ProfileInformation(user: user),
+              Divider(
+                color: new Color(0xFFD1D1D1),
+                height: 2,
+                thickness: 1.5,
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
