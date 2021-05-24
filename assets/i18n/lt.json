@@ -44,11 +44,15 @@
       "results": "Rezultatai",
       "requests": "Prašymai",
       "settings": "Nustatymai"
+    },
+    "address": {
+      "change": "Keisti"
     }
   },
   "window": {
     "events": "Įvykiai",
-    "results": "Rezultatai"
+    "results": "Rezultatai",
+    "profile": "Profilis"
   },
   "custom": {
     "loading": "Kraunasi..."
@@ -58,18 +62,74 @@
   },
   "tabs": {
     "semesterResults": "Semestro rezultatai",
-    "studyResults": "Bendri rezultatai"
+    "studyResults": "Bendri rezultatai",
+    "studyInformation": "Studijų informacija",
+    "userInformation": "Asmens duomenys"
   },
   "studies": {
+    "languages": {
+      "lt": "lietuvių"
+    },
+    "finance": {
+      "financed_by_country": "Studijos apmokamos valstybės biudžeto lėšomis."
+    },
+    "start": "Pradžia:",
+    "plannedEnd": "Planuojama pabaiga:",
+    "language": "Dėstymo kalba",
     "averageGrade": "Bendras vidurkis:",
     "semesters": "Semestras:",
     "credits": "Kreditai:",
     "semesterName": "{identifier} semestras",
+    "description": "{form} {stage} {type} studijos",
+    "form": {
+      "permanent": "nuolatinės"
+    },
+    "stage": {
+      "bachelor": "bakalauro"
+    },
     "type": {
+      "seamless": "vientisosios"
+    },
+    "direction": {
       "software_engineering": "PS"
+    },
+    "extended_type": {
+      "software_engineering": "Programų sistemos"
     }
   },
+  "person": {
+    "home_country": "Šalis, iš kurios atvyko:",
+    "foreign_language_1": "Užsienio kalba (pirmoji):",
+    "name_label": "Vardas:",
+    "nationality": "Pilietybė:",
+    "gender_label": "Lytis:",
+    "address_label": "Adresas:"
+  },
+  "genders": {
+    "male": "Vyras",
+    "female": "Moteris"
+  },
+  "countries": {
+    "lt": "Lietuva"
+  },
+  "nationalities": {
+    "lt": "Lietuvos"
+  },
+  "student": {
+    "title": "Studentas (-ė) nr. {studentNr}",
+    "status": {
+      "label": "Būsena",
+      "studying": "Studijuoja"
+    },
+    "acceptedGrade": "Priėmimo balas",
+    "progressDescription": "{course} kursas, {semester} semestras, {group} grupė"
+  },
   "universities": {
+    "faculties": {
+      "name": {
+        "mif": "Matematikos ir informatikos padalinys"
+      }
+    },
     "name": {
       "vilnius_university": "VU"
     }

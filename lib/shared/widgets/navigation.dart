@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
+import 'package:vu_is/pages/profile/profile.dart';
 import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/pages/events/events.dart';
 import 'package:vu_is/pages/study_results/study_results.dart';
@@ -31,7 +32,12 @@ class NavigationState<T> extends State<Navigation> {
       children = [
         TextButton.icon(
           style: VilniusUniversityButtonStyle.rightAlignedText(),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage(user: user)),
+            );
+          },
           icon: Text(user.name + ' ' + user.surname),
           label: Icon(Icons.person),
         ),

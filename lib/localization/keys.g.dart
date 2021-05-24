@@ -89,9 +89,13 @@ class Keys {
 
   static const String Button_Navigation_Settings = 'button.navigation.settings';
 
+  static const String Button_Address_Change = 'button.address.change';
+
   static const String Window_Events = 'window.events';
 
   static const String Window_Results = 'window.results';
+
+  static const String Window_Profile = 'window.profile';
 
   static const String Custom_Loading = 'custom.loading';
 
@@ -101,6 +105,21 @@ class Keys {
 
   static const String Tabs_Studyresults = 'tabs.studyResults';
 
+  static const String Tabs_Studyinformation = 'tabs.studyInformation';
+
+  static const String Tabs_Userinformation = 'tabs.userInformation';
+
+  static const String Studies_Languages_Lt = 'studies.languages.lt';
+
+  static const String Studies_Finance_Financed_By_Country =
+      'studies.finance.financed_by_country';
+
+  static const String Studies_Start = 'studies.start';
+
+  static const String Studies_Plannedend = 'studies.plannedEnd';
+
+  static const String Studies_Language = 'studies.language';
+
   static const String Studies_Averagegrade = 'studies.averageGrade';
 
   static const String Studies_Semesters = 'studies.semesters';
@@ -109,8 +128,53 @@ class Keys {
 
   static const String Studies_Semestername = 'studies.semesterName';
 
-  static const String Studies_Type_Software_Engineering =
-      'studies.type.software_engineering';
+  static const String Studies_Description = 'studies.description';
+
+  static const String Studies_Form_Permanent = 'studies.form.permanent';
+
+  static const String Studies_Stage_Bachelor = 'studies.stage.bachelor';
+
+  static const String Studies_Type_Seamless = 'studies.type.seamless';
+
+  static const String Studies_Direction_Software_Engineering =
+      'studies.direction.software_engineering';
+
+  static const String Studies_Extended_Type_Software_Engineering =
+      'studies.extended_type.software_engineering';
+
+  static const String Person_Home_Country = 'person.home_country';
+
+  static const String Person_Foreign_Language_1 = 'person.foreign_language_1';
+
+  static const String Person_Name_Label = 'person.name_label';
+
+  static const String Person_Nationality = 'person.nationality';
+
+  static const String Person_Gender_Label = 'person.gender_label';
+
+  static const String Person_Address_Label = 'person.address_label';
+
+  static const String Genders_Male = 'genders.male';
+
+  static const String Genders_Female = 'genders.female';
+
+  static const String Countries_Lt = 'countries.lt';
+
+  static const String Nationalities_Lt = 'nationalities.lt';
+
+  static const String Student_Title = 'student.title';
+
+  static const String Student_Status_Label = 'student.status.label';
+
+  static const String Student_Status_Studying = 'student.status.studying';
+
+  static const String Student_Acceptedgrade = 'student.acceptedGrade';
+
+  static const String Student_Progressdescription =
+      'student.progressDescription';
+
+  static const String Universities_Faculties_Name_Mif =
+      'universities.faculties.name.mif';
 
   static const String Universities_Name_Vilnius_University =
       'universities.name.vilnius_university';

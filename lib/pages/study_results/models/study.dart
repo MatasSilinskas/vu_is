@@ -6,15 +6,15 @@ part 'study.g.dart';
 
 @JsonSerializable()
 class Study {
-  final String type;
+  final String direction;
   final University university;
 
-  Study({required this.type, required this.university});
+  Study({required this.direction, required this.university});
 
   factory Study.fromJson(Map<String, dynamic> json) => _$StudyFromJson(json);
 
   Map<String, dynamic> toJson() => _$StudyToJson(this);
 
   @override
-  String toString() => translate('studies.type.' + this.type);
+  String toString() => translate('studies.type.' + this.direction);
 }

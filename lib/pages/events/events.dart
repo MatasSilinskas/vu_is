@@ -6,7 +6,6 @@ import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/events/models/event.dart';
 import 'package:vu_is/pages/events/models/widget/event_button.dart';
 import 'package:vu_is/shared/models/user.dart';
-import 'package:vu_is/shared/style/button_style.dart';
 import 'package:vu_is/shared/widgets/vu_data_loader.dart';
 import 'package:vu_is/shared/widgets/vu_scaffold.dart';
 
