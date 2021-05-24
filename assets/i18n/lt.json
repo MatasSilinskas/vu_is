@@ -1,6 +1,6 @@
 {
   "event": {
-    "grade_added": "{subject} buvo įvertintas. Pažymys: {grade}",
+    "grade_added": "{subject} buvo įvertintas. Įvertinimas: {grade}",
     "registrations_incoming": "Artėja dalykų registracijos! Nepamirškite pasirinkti norimų dalykų iš anksto.",
     "registrations_started": "Dalykų registracijos prasidėjo! Nepamirškite jų pateikti."
   },
