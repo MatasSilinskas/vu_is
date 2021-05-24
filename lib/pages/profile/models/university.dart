@@ -1,4 +1,4 @@
-import 'package:vu_is/shared/models/faculty.dart';
+import 'package:vu_is/pages/profile/models/faculty.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'university.g.dart';

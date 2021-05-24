@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
-import 'package:vu_is/shared/models/university.dart';
+import 'package:vu_is/pages/profile/models/university.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'study.g.dart';
+part 'user_study.g.dart';
 
 @JsonSerializable()
-class Study {
+class UserStudy {
   final int course;
   final int group;
   final int semester;
   final int acceptedGrade;
+  final int studentNumber;
   final String direction;
   final String form;
   final String stage;
@@ -19,13 +20,14 @@ class Study {
   final String finance;
   final String language;
   final University university;
+  final String status;
 
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
   final DateTime start;
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
   final DateTime plannedEnd;
 
-  Study({
+  UserStudy({
     required this.course,
     required this.group,
     required this.semester,
@@ -39,11 +41,13 @@ class Study {
     required this.finance,
     required this.language,
     required this.acceptedGrade,
+    required this.status,
+    required this.studentNumber,
   });
 
-  factory Study.fromJson(Map<String, dynamic> json) => _$StudyFromJson(json);
+  factory UserStudy.fromJson(Map<String, dynamic> json) => _$UserStudyFromJson(json);
 
-  Map<String, dynamic> toJson() => _$StudyToJson(this);
+  Map<String, dynamic> toJson() => _$UserStudyToJson(this);
 
   static DateTime _dateTimeFromTimestamp(Timestamp timestamp) => timestamp.toDate();
 
@@ -65,4 +69,5 @@ class Study {
 
   String getFinanceInformation() => translate('studies.finance.' + this.finance);
   String getLanguage() => translate('languages.' + this.language);
+  String getStatus() => translate('student.status.' + this.status);
 }

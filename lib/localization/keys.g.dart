@@ -109,7 +109,9 @@ class Keys {
 
   static const String Tabs_Userinformation = 'tabs.userInformation';
 
-  static const String Studies_Languages_Lt = 'studies.languages.lt';
+  static const String Languages_Lt = 'languages.lt';
+
+  static const String Languages_En = 'languages.en';
 
   static const String Studies_Finance_Financed_By_Country =
       'studies.finance.financed_by_country';
