@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
               }),
         ),
         Scaffold(
-          body: Column(
+          body: ListView(
             children: [
               ProfileInformation(user: user),
               Divider(
