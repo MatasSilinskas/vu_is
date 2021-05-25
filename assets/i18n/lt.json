@@ -22,7 +22,8 @@
       "mathematical_logic": "Matematinė logika",
       "software_engineering_1": "Programų sistemų inžinerija I/II d.",
       "applied_oop": "Taikomasis objektinis programavimas",
-      "sociology": "Sociologija"
+      "sociology": "Sociologija",
+      "physics_for_informatics": "Fizika informatikams"
     },
     "type": {
       "mandatory_subject": "{universityName} {studyName} privalomasis dalykas",
@@ -134,6 +135,21 @@
     },
     "name": {
       "vilnius_university": "VU"
+    }
+  },
+  "registrations": {
+    "titles": {
+      "listViews": "Registracijos"
+    },
+    "labels": {
+      "search": "Ieškokite pagal pavadinimą arba dėstytoją",
+      "group": "Grupė:",
+      "credits": "Kreditai:",
+      "semester": "Semestras:"
+    },
+    "tabs": {
+      "current": "Einamosios",
+      "previous": "Įvykusios"
     }
   }
 }

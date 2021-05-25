@@ -6,12 +6,17 @@ part 'subject.g.dart';
 
 @JsonSerializable()
 class Subject extends TranslatableSubject {
+  final int credits;
+  final String type;
   final Professor professor;
 
-  Subject({required String type, required this.professor}) : super(type);
+  Subject({
+    required this.credits,
+    required this.type,
+    required this.professor,
+  }) : super(type);
 
-  factory Subject.fromJson(Map<String, dynamic> json) =>
-      _$SubjectFromJson(json);
+  factory Subject.fromJson(Map<String, dynamic> json) => _$SubjectFromJson(json);
 
   Map<String, dynamic> toJson() => _$SubjectToJson(this);
 }

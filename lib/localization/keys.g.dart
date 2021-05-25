@@ -63,6 +63,9 @@ class Keys {
 
   static const String Subject_Title_Sociology = 'subject.title.sociology';
 
+  static const String Subject_Title_Physics_For_Informatics =
+      'subject.title.physics_for_informatics';
+
   static const String Subject_Type_Mandatory_Subject =
       'subject.type.mandatory_subject';
 
@@ -182,4 +185,23 @@ class Keys {
 
   static const String Universities_Name_Vilnius_University =
       'universities.name.vilnius_university';
+
+  static const String Registrations_Titles_Listviews =
+      'registrations.titles.listViews';
+
+  static const String Registrations_Labels_Search =
+      'registrations.labels.search';
+
+  static const String Registrations_Labels_Group = 'registrations.labels.group';
+
+  static const String Registrations_Labels_Credits =
+      'registrations.labels.credits';
+
+  static const String Registrations_Labels_Semester =
+      'registrations.labels.semester';
+
+  static const String Registrations_Tabs_Current = 'registrations.tabs.current';
+
+  static const String Registrations_Tabs_Previous =
+      'registrations.tabs.previous';
 }

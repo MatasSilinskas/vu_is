@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/profile/profile.dart';
+import 'package:vu_is/pages/registrations/registrations.dart';
 import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/pages/events/events.dart';
 import 'package:vu_is/pages/study_results/study_results.dart';
@@ -55,7 +56,12 @@ class NavigationState<T> extends State<Navigation> {
         _navigationItemDivider(),
         TextButton.icon(
           style: VilniusUniversityButtonStyle.leftAlignedText(),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RegistrationsPage(user: user)),
+            );
+          },
           icon: Icon(Icons.add_to_queue),
           label: Text(translate(Keys.Button_Navigation_Registrations)),
         ),
