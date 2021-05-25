@@ -150,6 +150,8 @@ class Keys {
 
   static const String Person_Name_Label = 'person.name_label';
 
+  static const String Person_Surname_Label = 'person.surname_label';
+
   static const String Person_Nationality = 'person.nationality';
 
   static const String Person_Gender_Label = 'person.gender_label';

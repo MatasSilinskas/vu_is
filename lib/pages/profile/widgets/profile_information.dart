@@ -17,14 +17,14 @@ class ProfileInformation extends Container {
       Row(
         children: [
           Expanded(child: Text(translate(Keys.Person_Home_Country))),
-          Expanded(child: Text(user.getCountry())),
+          Expanded(child: Text(user.getTranslatedCountry())),
         ],
       ),
       SizedBox(height: 5),
       Row(
         children: [
           Expanded(child: Text(translate(Keys.Person_Foreign_Language_1))),
-          Expanded(child: Text(user.getFirstForeignLanguage())),
+          Expanded(child: Text(user.getTranslatedFirstForeignLanguage())),
         ],
       ),
     ],

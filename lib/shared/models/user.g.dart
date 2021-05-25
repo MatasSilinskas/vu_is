@@ -17,6 +17,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     firstForeignLanguage: json['firstForeignLanguage'] as String,
     gender: json['gender'] as String,
     nationality: json['nationality'] as String,
+    address: Address.fromJson(json['address'] as Map<String, dynamic>),
   );
 }
 
@@ -30,4 +31,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'firstForeignLanguage': instance.firstForeignLanguage,
       'gender': instance.gender,
       'nationality': instance.nationality,
+      'address': instance.address,
     };

@@ -1,5 +1,6 @@
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vu_is/shared/models/address.dart';
 
 part 'user.g.dart';
 
@@ -14,6 +15,7 @@ class User {
   final String firstForeignLanguage;
   final String gender;
   final String nationality;
+  final Address address;
 
   User({
     required this.id,
@@ -25,12 +27,15 @@ class User {
     required this.firstForeignLanguage,
     required this.gender,
     required this.nationality,
+    required this.address,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
-  String getCountry() => translate('countries.' + this.country);
-  String getFirstForeignLanguage() => translate('languages.' + this.firstForeignLanguage);
+  String getTranslatedCountry() => translate('countries.' + this.country);
+  String getTranslatedFirstForeignLanguage() => translate('languages.' + this.firstForeignLanguage);
+  String getTranslatedNationality() => translate('nationalities.' + this.nationality);
+  String getTranslatedGender() => translate('genders.' + this.gender);
 }

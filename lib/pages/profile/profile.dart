@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/profile/models/user_study.dart';
+import 'package:vu_is/pages/profile/widgets/profile_form.dart';
 import 'package:vu_is/pages/profile/widgets/profile_information.dart';
 import 'package:vu_is/pages/profile/widgets/student_information.dart';
 import 'package:vu_is/shared/models/user.dart';
@@ -62,7 +64,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: new Color(0xFFD1D1D1),
                 height: 2,
                 thickness: 1.5,
-              )
+              ),
+              Padding(padding: EdgeInsets.all(20), child: ProfileForm(user: user))
             ],
           ),
         ),
