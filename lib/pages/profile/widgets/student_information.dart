@@ -13,17 +13,18 @@ class StudentInformation extends Container {
   EdgeInsetsGeometry? get padding => EdgeInsets.all(20);
 
   @override
-  Widget? get child => Column(
+  Widget? get child => ListView(
         children: [
-          Text(
+          Center(
+              child: Text(
             translate(Keys.Student_Title, args: {'studentNr': userStudy.studentNumber}),
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
+          )),
           SizedBox(height: 10),
-          Text(userStudy.getExtendedType()),
-          Text(userStudy.university.faculty.getName()),
-          Text(userStudy.getDescription()),
-          Text(userStudy.getProgressDescription()),
+          Center(child: Text(userStudy.getExtendedType())),
+          Center(child: Text(userStudy.university.faculty.getName())),
+          Center(child: Text(userStudy.getDescription())),
+          Center(child: Text(userStudy.getProgressDescription())),
           SizedBox(height: 20),
           Align(
             alignment: Alignment.centerLeft,
