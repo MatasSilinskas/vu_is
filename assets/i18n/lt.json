@@ -145,7 +145,8 @@
       "search": "Ieškokite pagal pavadinimą arba dėstytoją",
       "group": "Grupė:",
       "credits": "Kreditai:",
-      "semester": "Semestras:"
+      "semester": "Semestras:",
+      "semesterNotChosen": "Semestras nepasirinktas."
     },
     "tabs": {
       "current": "Einamosios",

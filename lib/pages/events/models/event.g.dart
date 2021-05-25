@@ -17,5 +17,5 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
       'type': instance.type,
       'createdAt': Event._dateTimeToTimestamp(instance.createdAt),
-      'metadata': Event._metadataToMap(instance.metadata),
+      'metadata': instance.metadata,
     };

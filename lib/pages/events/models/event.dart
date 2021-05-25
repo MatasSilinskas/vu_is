@@ -15,7 +15,6 @@ class Event {
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
   final DateTime createdAt;
 
-  @JsonKey(toJson: _metadataToMap)
   late final Metadata metadata;
 
   Event(
@@ -34,7 +33,4 @@ class Event {
 
   static Timestamp _dateTimeToTimestamp(DateTime dateTime) =>
       Timestamp.fromDate(dateTime);
-
-  static Map<String, dynamic> _metadataToMap(Metadata metadata) =>
-      metadata.toJson();
 }

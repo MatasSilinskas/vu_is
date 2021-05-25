@@ -200,6 +200,9 @@ class Keys {
   static const String Registrations_Labels_Semester =
       'registrations.labels.semester';
 
+  static const String Registrations_Labels_Semesternotchosen =
+      'registrations.labels.semesterNotChosen';
+
   static const String Registrations_Tabs_Current = 'registrations.tabs.current';
 
   static const String Registrations_Tabs_Previous =
