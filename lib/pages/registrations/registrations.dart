@@ -53,9 +53,13 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
               return new VuDataLoader();
             }
 
-            List<Registration> registrationData = snapshot.data!.docs.map((DocumentSnapshot document) {
-              return new Registration.fromJson(document.data() as Map<String, dynamic>);
-            }).toList();
+            List<Registration> registrationData = snapshot.data!.docs
+                .map((DocumentSnapshot document) {
+                  return new Registration.fromJson(document.data() as Map<String, dynamic>);
+                })
+                .where((Registration element) =>
+                    this.selectedSemesterId == null || element.semester.id == this.selectedSemesterId)
+                .toList();
 
             Container semesterDropdown = new Container(
               padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
