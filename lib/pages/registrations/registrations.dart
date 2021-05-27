@@ -21,6 +21,7 @@ class RegistrationsPage extends StatefulWidget {
 class _RegistrationsPageState extends State<RegistrationsPage> {
   final User user;
   String? selectedSemesterId;
+  String? searchQuery;
 
   _RegistrationsPageState({required this.user});
 
@@ -35,9 +36,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
       title: Keys.Registrations_Titles_Listviews,
       tabs: [
         Tab(text: translate(Keys.Registrations_Tabs_Current)),
-        Tab(
-          text: translate(Keys.Registrations_Tabs_Previous),
-        ),
+        Tab(text: translate(Keys.Registrations_Tabs_Previous)),
       ],
       bodies: [
         Scaffold(),
@@ -59,7 +58,34 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                 })
                 .where((Registration element) =>
                     this.selectedSemesterId == null || element.semester.id == this.selectedSemesterId)
+                .where((Registration element) =>
+                    this.searchQuery == null ||
+                    element.subject.toString().contains(this.searchQuery!) ||
+                    element.subject.professor.getFullName().contains(this.searchQuery!))
                 .toList();
+
+            Container searchField = new Container(
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              child: new Row(
+                children: [
+                  Icon(
+                    Icons.search,
+                    color: Color(0xFF690335),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: translate(Keys.Registrations_Labels_Search),
+                        border: new OutlineInputBorder(),
+                        focusedBorder: new OutlineInputBorder(),
+                      ),
+                      initialValue: searchQuery,
+                      onFieldSubmitted: _searchRegistrations,
+                    ),
+                  ),
+                ],
+              ),
+            );
 
             Container semesterDropdown = new Container(
               padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
@@ -85,7 +111,8 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
             );
 
             return ListView(
-                children: [semesterDropdown] +
+                padding: EdgeInsets.only(top: 20),
+                children: [searchField, semesterDropdown] +
                     registrationData.map(
                       (Registration registration) {
                         return new Container(
@@ -103,11 +130,13 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
 
     return new DropdownButtonHideUnderline(
         child: new Container(
-      height: 39,
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
       child: DropdownButton<String>(
         isExpanded: true,
-        hint: Text(translate(Keys.Registrations_Labels_Semesternotchosen)),
+        hint: Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Text(translate(Keys.Registrations_Labels_Semesternotchosen)),
+        ),
         value: selectedSemesterId,
         icon: new Icon(Icons.keyboard_arrow_down),
         iconSize: 24,
@@ -133,5 +162,11 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
 
       return new Semester.fromJson(documentData);
     }).toList();
+  }
+
+  void _searchRegistrations(String? newValue) {
+    setState(() {
+      searchQuery = newValue!;
+    });
   }
 }

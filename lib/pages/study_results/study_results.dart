@@ -136,7 +136,6 @@ class _StudyResultsPageState extends State<StudyResultsPage> {
 
     return new DropdownButtonHideUnderline(
         child: new Container(
-      height: 39,
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
       child: DropdownButton<String>(
         isExpanded: true,
