@@ -66,6 +66,13 @@ class Keys {
   static const String Subject_Title_Physics_For_Informatics =
       'subject.title.physics_for_informatics';
 
+  static const String Subject_Title_Management_Basics =
+      'subject.title.management_basics';
+
+  static const String Subject_Title_Accounting = 'subject.title.accounting';
+
+  static const String Subject_Title_Computer_Law = 'subject.title.computer_law';
+
   static const String Subject_Type_Mandatory_Subject =
       'subject.type.mandatory_subject';
 
@@ -203,8 +210,14 @@ class Keys {
   static const String Registrations_Labels_Semesternotchosen =
       'registrations.labels.semesterNotChosen';
 
+  static const String Registrations_Buttons_Start_Registrations =
+      'registrations.buttons.start_registrations';
+
   static const String Registrations_Tabs_Current = 'registrations.tabs.current';
 
   static const String Registrations_Tabs_Previous =
       'registrations.tabs.previous';
+
+  static const String Registrations_Information_Empty_Ongoing =
+      'registrations.information.empty_ongoing';
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/registrations/models/registration.dart';
+import 'package:vu_is/pages/registrations/widgets/empty_registration.dart';
 import 'package:vu_is/pages/registrations/widgets/registration_tile.dart';
 import 'package:vu_is/pages/study_results/models/semester.dart';
 import 'package:vu_is/shared/models/user.dart';
@@ -30,6 +31,8 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
     CollectionReference userRegistrations =
         FirebaseFirestore.instance.collection('users/' + this.user.id + '/registrations');
     CollectionReference semesters = FirebaseFirestore.instance.collection('semesters');
+    CollectionReference chosenRegistrations =
+        FirebaseFirestore.instance.collection('users/' + this.user.id + '/choices');
 
     return VuTabController(
       user: this.user,
@@ -39,7 +42,25 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
         Tab(text: translate(Keys.Registrations_Tabs_Previous)),
       ],
       bodies: [
-        Scaffold(),
+        Scaffold(
+          body: StreamBuilder<QuerySnapshot>(
+              stream: chosenRegistrations.snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text(translate(Keys.Errors_Unknown));
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return new VuDataLoader();
+                }
+
+                if (snapshot.data!.docs.isEmpty) {
+                  return EmptyRegistration(context: context, user: user);
+                }
+
+                return Container();
+              }),
+        ),
         Scaffold(
             body: StreamBuilder<QuerySnapshot>(
           stream: userRegistrations.snapshots(),

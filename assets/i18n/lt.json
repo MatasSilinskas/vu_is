@@ -23,7 +23,10 @@
       "software_engineering_1": "Programų sistemų inžinerija I/II d.",
       "applied_oop": "Taikomasis objektinis programavimas",
       "sociology": "Sociologija",
-      "physics_for_informatics": "Fizika informatikams"
+      "physics_for_informatics": "Fizika informatikams",
+      "management_basics": "Vadybos pagrindai",
+      "accounting": "Buhalterinė apskaita",
+      "computer_law": "Informatikos teisė"
     },
     "type": {
       "mandatory_subject": "{universityName} {studyName} privalomasis dalykas",
@@ -148,9 +151,15 @@
       "semester": "Semestras:",
       "semesterNotChosen": "Semestras nepasirinktas"
     },
+    "buttons": {
+      "start_registrations": "Pradėti"
+    },
     "tabs": {
       "current": "Einamosios",
       "previous": "Įvykusios"
+    },
+    "information": {
+      "empty_ongoing": "Kitą semestrą turėsite atlikti registracijas BUS, PD ar LD registracijas. Pasirinkite dalykus iš anksto, kuriuos galėsite pateikti registracijoms prasidėjus"
     }
   }
 }
