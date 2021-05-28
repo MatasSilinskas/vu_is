@@ -142,17 +142,22 @@
   },
   "registrations": {
     "titles": {
-      "listViews": "Registracijos"
+      "listViews": "Registracijos",
+      "newRegistration": "Nauja registracija"
     },
     "labels": {
       "search": "Ieškokite pagal pavadinimą arba dėstytoją",
       "group": "Grupė:",
       "credits": "Kreditai:",
       "semester": "Semestras:",
-      "semesterNotChosen": "Semestras nepasirinktas"
+      "semesterNotChosen": "Semestras nepasirinktas",
+      "professor": "Dėstytojas:",
+      "takenPlaces": "Vietų sk.:",
+      "chooseOneSubject": "Pasirinkite vieną dalyką:"
     },
     "buttons": {
-      "start_registrations": "Pradėti"
+      "start_registrations": "Pradėti",
+      "save": "Išsaugoti"
     },
     "tabs": {
       "current": "Einamosios",

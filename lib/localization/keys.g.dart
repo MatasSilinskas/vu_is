@@ -196,6 +196,9 @@ class Keys {
   static const String Registrations_Titles_Listviews =
       'registrations.titles.listViews';
 
+  static const String Registrations_Titles_Newregistration =
+      'registrations.titles.newRegistration';
+
   static const String Registrations_Labels_Search =
       'registrations.labels.search';
 
@@ -210,8 +213,19 @@ class Keys {
   static const String Registrations_Labels_Semesternotchosen =
       'registrations.labels.semesterNotChosen';
 
+  static const String Registrations_Labels_Professor =
+      'registrations.labels.professor';
+
+  static const String Registrations_Labels_Takenplaces =
+      'registrations.labels.takenPlaces';
+
+  static const String Registrations_Labels_Chooseonesubject =
+      'registrations.labels.chooseOneSubject';
+
   static const String Registrations_Buttons_Start_Registrations =
       'registrations.buttons.start_registrations';
+
+  static const String Registrations_Buttons_Save = 'registrations.buttons.save';
 
   static const String Registrations_Tabs_Current = 'registrations.tabs.current';
 

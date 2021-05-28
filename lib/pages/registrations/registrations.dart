@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
 import 'package:vu_is/pages/registrations/models/registration.dart';
+import 'package:vu_is/pages/registrations/models/upcoming_registration.dart';
 import 'package:vu_is/pages/registrations/widgets/empty_registration.dart';
 import 'package:vu_is/pages/registrations/widgets/registration_tile.dart';
 import 'package:vu_is/pages/study_results/models/semester.dart';
 import 'package:vu_is/shared/models/user.dart';
 import 'package:vu_is/shared/widgets/vu_data_loader.dart';
 import 'package:vu_is/shared/widgets/vu_tab_controller.dart';
+
+import 'models/selected_subject.dart';
 
 class RegistrationsPage extends StatefulWidget {
   final User user;
@@ -31,8 +34,8 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
     CollectionReference userRegistrations =
         FirebaseFirestore.instance.collection('users/' + this.user.id + '/registrations');
     CollectionReference semesters = FirebaseFirestore.instance.collection('semesters');
-    CollectionReference chosenRegistrations =
-        FirebaseFirestore.instance.collection('users/' + this.user.id + '/choices');
+    CollectionReference upcomingRegistrations =
+        FirebaseFirestore.instance.collection('users/' + this.user.id + '/upcoming-registrations');
 
     return VuTabController(
       user: this.user,
@@ -44,7 +47,7 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
       bodies: [
         Scaffold(
           body: StreamBuilder<QuerySnapshot>(
-              stream: chosenRegistrations.snapshots(),
+              stream: upcomingRegistrations.snapshots(),
               builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
                   return Text(translate(Keys.Errors_Unknown));
@@ -54,8 +57,22 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                   return new VuDataLoader();
                 }
 
-                if (snapshot.data!.docs.isEmpty) {
-                  return EmptyRegistration(context: context, user: user);
+                List<UpcomingRegistration> upcomingRegistrations = UpcomingRegistration.fromSnapshot(snapshot);
+                List<SelectedSubject> selectedSubjects = [];
+                for (UpcomingRegistration registration in upcomingRegistrations) {
+                  var subjects = registration.subjects.where((element) => element.isSelected);
+
+                  if (subjects.isNotEmpty) {
+                    selectedSubjects.add(subjects.first);
+                  }
+                }
+
+                if (selectedSubjects.isEmpty) {
+                  return EmptyRegistration(
+                    context: context,
+                    upcomingRegistrations: upcomingRegistrations,
+                    user: user,
+                  );
                 }
 
                 return Container();
