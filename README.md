@@ -1,16 +1,8 @@
-# vu_is
+Tai Vu Is internetinio tinklapio pavertimas į mobiliają programėlę.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Norint pasileisti kodą, reikia:
+1. Įsirašyti Flutter ir Android Studio pagal nurodytas instrukcijas:
+https://flutter.dev/docs/get-started/install
+2. Parsisiųsti kodą iš https://github.com/MatasSilinskas/vu_is
+3. Atsidaryti kodą per Android Studio.
+4. Nurodyti paleidimo failą: lib/main.dart ir paspausti „Run“ Android Studio aplinkoje.
