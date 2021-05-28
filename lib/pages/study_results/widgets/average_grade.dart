@@ -39,9 +39,10 @@ class AverageGrade extends Container {
 }
 
 String _getAverageGrade(List<Grade> gradesData) {
-  Iterable<int> grades = gradesData.map((Grade e) => e.grade);
+  Iterable<int> grades = gradesData.map((Grade e) => e.grade * e.obtainedCredits);
   int gradesSum = grades.reduce((int value, int element) => value + element);
-  String averageGrade = (gradesSum / gradesData.length).toStringAsFixed(2);
+  int maxCredits = int.parse(_getMaxCredits(gradesData));
+  String averageGrade = (gradesSum / maxCredits).toStringAsFixed(2);
 
   while (averageGrade.endsWith('0')) {
     averageGrade = averageGrade.substring(0, averageGrade.length - 1);
