@@ -11,13 +11,14 @@ import 'package:vu_is/shared/widgets/vu_scaffold.dart';
 class NewRegistrationPage extends StatefulWidget {
   final List<UpcomingRegistration> upcomingRegistrations;
   final User user;
+  UpcomingRegistration? selectedRegistration;
 
-  NewRegistrationPage({required this.upcomingRegistrations, required this.user}) : super();
+  NewRegistrationPage({required this.upcomingRegistrations, required this.user, this.selectedRegistration}) : super();
 
   @override
   _NewRegistrationPageState createState() => _NewRegistrationPageState(
       upcomingRegistrations: this.upcomingRegistrations,
-      selectedRegistration: upcomingRegistrations.first,
+      selectedRegistration: selectedRegistration == null ? upcomingRegistrations.first : selectedRegistration!,
       user: this.user);
 }
 

@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:vu_is/localization/keys.dart';
+import 'package:vu_is/pages/new_registration/new_registration.dart';
 import 'package:vu_is/pages/registrations/models/registration.dart';
 import 'package:vu_is/pages/registrations/models/upcoming_registration.dart';
 import 'package:vu_is/pages/registrations/widgets/empty_registration.dart';
 import 'package:vu_is/pages/registrations/widgets/registration_tile.dart';
 import 'package:vu_is/pages/study_results/models/semester.dart';
 import 'package:vu_is/shared/models/user.dart';
+import 'package:vu_is/shared/style/button_style.dart';
 import 'package:vu_is/shared/widgets/vu_data_loader.dart';
 import 'package:vu_is/shared/widgets/vu_tab_controller.dart';
 
@@ -58,12 +60,12 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                 }
 
                 List<UpcomingRegistration> upcomingRegistrations = UpcomingRegistration.fromSnapshot(snapshot);
-                List<SelectedSubject> selectedSubjects = [];
+                List<Map<String, dynamic>> selectedSubjects = [];
                 for (UpcomingRegistration registration in upcomingRegistrations) {
                   var subjects = registration.subjects.where((element) => element.isSelected);
 
                   if (subjects.isNotEmpty) {
-                    selectedSubjects.add(subjects.first);
+                    selectedSubjects.add({'selectedSubject': subjects.first, 'registration': registration});
                   }
                 }
 
@@ -75,7 +77,98 @@ class _RegistrationsPageState extends State<RegistrationsPage> {
                   );
                 }
 
-                return Container();
+                return ListView(
+                    padding: EdgeInsets.only(top: 20),
+                    children: selectedSubjects.map(
+                      (Map<String, dynamic> object) {
+                        SelectedSubject selectedSubject = object['selectedSubject'];
+                        UpcomingRegistration registration = object['registration'];
+                        return new Container(
+                            child: new Card(
+                                child: ExpansionTile(
+                          leading: new SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: new Center(
+                                child: Text(
+                              registration.type.toString().toUpperCase(),
+                              style: TextStyle(fontSize: 21, color: Colors.black),
+                            )),
+                          ),
+                          trailing: new Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Color(0xFF690335),
+                            size: 38,
+                          ),
+                          children: [
+                            new Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                new SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.225,
+                                  child: new Center(
+                                      child: new Text(registration.group != null
+                                          ? translate(Keys.Registrations_Labels_Group) +
+                                              ' ' +
+                                              registration.group.toString().toUpperCase()
+                                          : '')),
+                                ),
+                                new SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.745,
+                                  child: new Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      new Text(selectedSubject.professor.getFullName()),
+                                      new SizedBox(height: 5),
+                                      new Text(translate(Keys.Registrations_Labels_Credits) +
+                                          ' ' +
+                                          selectedSubject.credits.toString()),
+                                      new SizedBox(height: 5),
+                                      Text(translate(Keys.Registrations_Labels_Takenplaces) +
+                                          ' ' +
+                                          selectedSubject.expectedStudents.toString() +
+                                          '/' +
+                                          selectedSubject.maxAllowed.toString()),
+                                      new SizedBox(height: 5),
+                                      new Container(
+                                        padding: EdgeInsets.only(right: 30),
+                                        alignment: Alignment.bottomRight,
+                                        child: TextButton(
+                                          style: VilniusUniversityButtonStyle(),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => NewRegistrationPage(
+                                                  upcomingRegistrations: upcomingRegistrations,
+                                                  user: user,
+                                                  selectedRegistration: registration,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: 30, right: 30),
+                                            child: Text(translate(Keys.Button_Address_Change)),
+                                          ),
+                                        ),
+                                      ),
+                                      new SizedBox(height: 5),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                          title: new Container(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: new Text(
+                                selectedSubject.toString(),
+                                style: TextStyle(color: Colors.black),
+                              )),
+                        )));
+                      },
+                    ).toList());
               }),
         ),
         Scaffold(

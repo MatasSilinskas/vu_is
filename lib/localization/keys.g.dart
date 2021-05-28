@@ -227,6 +227,9 @@ class Keys {
 
   static const String Registrations_Buttons_Save = 'registrations.buttons.save';
 
+  static const String Registrations_Buttons_Change =
+      'registrations.buttons.change';
+
   static const String Registrations_Tabs_Current = 'registrations.tabs.current';
 
   static const String Registrations_Tabs_Previous =

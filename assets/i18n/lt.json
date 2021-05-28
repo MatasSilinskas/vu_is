@@ -157,7 +157,8 @@
     },
     "buttons": {
       "start_registrations": "Pradėti",
-      "save": "Išsaugoti"
+      "save": "Išsaugoti",
+      "change": "Keisti"
     },
     "tabs": {
       "current": "Einamosios",
